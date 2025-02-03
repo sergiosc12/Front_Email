@@ -1,0 +1,19 @@
+<div class="inbox-container">
+    <table class="email-table">
+      <thead>
+        <tr>
+          <th>Sender</th>
+          <th>Subject</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let email of emails" (click)="selectEmail(email)">
+          <td>{{ email.sender }}</td>
+          <td>{{ email.subject }}</td>
+          <td>{{ formatDate(email) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

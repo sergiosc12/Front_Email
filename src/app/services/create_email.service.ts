@@ -20,7 +20,7 @@ export class CreateEmailService {
     });
 
     // Realizar la solicitud GET al backend para obtener el id del país
-    return this.http.get<string>(`http://localhost:8081/api/user/getPais?username=${username}`, { headers });
+    return this.http.get<string>(`http://localhost:8080/api/user/getPais?username=${username}`, { headers });
   }
 
   // Método para crear el correo
@@ -54,7 +54,7 @@ export class CreateEmailService {
           });
   
           // Enviar la solicitud POST para crear el correo
-          const response = await this.http.post<any>(`http://localhost:8081/api/message/create`, emailData, { headers }).toPromise();
+          const response = await this.http.post<any>(`http://localhost:8080/api/message/create`, emailData, { headers }).toPromise();
           
           if (response?.mensajePK?.idMensaje) {
             localStorage.setItem('emailId', response.mensajePK.idMensaje); // Guardar el idMensaje en localStorage

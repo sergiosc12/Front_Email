@@ -27,10 +27,20 @@ export class GmailComponent  implements OnInit {
   }
 
   getEmails(folder: string) {
-    this.emailService.getEmails(folder).subscribe(data => {
-      this.emails = data; // Actualiza la lista de correos
+    this.emailService.getEmails(folder, this.user).subscribe(data => {
+      // Map the email object and keep fechaAccion and horaAccion for formatting in InboxComponent
+      this.emails = Object.entries(data).map(([sender, email]) => ({
+        sender,
+        asunto: email.asunto, // Use 'asunto' for subject
+        fechaAccion: email.fechaAccion, // Keep original properties for date formatting
+        horaAccion: email.horaAccion, // Keep original properties for time
+      }));
+      
+      console.log(this.emails);
     });
   }
+  
+
 
   showComposer() {
     this.isComposerVisible = true; // Muestra el compositor

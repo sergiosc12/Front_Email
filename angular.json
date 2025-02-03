@@ -64,11 +64,13 @@
               "sourceMap": true,
               "namedChunks": true
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "periferia-test-web-client:build:development"
+          },
           "configurations": {
             "production": {
               "browserTarget": "periferia-test-web-client:build:production"
@@ -76,8 +78,7 @@
             "development": {
               "browserTarget": "periferia-test-web-client:build:development"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

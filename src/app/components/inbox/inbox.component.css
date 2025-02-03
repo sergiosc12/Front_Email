@@ -1,0 +1,31 @@
+.email-table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures there is no space between table borders */
+  }
+  
+  .email-table th, .email-table td {
+    padding: 12px 20px; /* Adjusts padding for both headers and data cells */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .email-table th {
+    background-color: #f4f4f4; /* Light background for header */
+    font-weight: bold;
+  }
+  
+  .email-table td {
+    border-bottom: 1px solid #ddd; /* Adds a border to separate rows */
+  }
+  
+  .email-table th:nth-child(1), .email-table td:nth-child(1) {
+    width: 30%; /* Adjusts the width of the "Sender" column */
+  }
+  
+  .email-table th:nth-child(2), .email-table td:nth-child(2) {
+    width: 40%; /* Adjusts the width of the "Subject" column */
+  }
+  
+  .email-table th:nth-child(3), .email-table td:nth-child(3) {
+    width: 30%; /* Adjusts the width of the "Date" column */
+  }
+  

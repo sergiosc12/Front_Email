@@ -12,6 +12,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { EmailListComponent } from './components/email-list/email-list.component';
 import { EmailComposerComponent } from './components/email-composer/email-composer.component';
 import { GmailComponent } from './gmail/gmail.component';
+import { InboxComponent } from './components/inbox/inbox.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { GmailComponent } from './gmail/gmail.component';
     SidebarComponent,
     EmailListComponent,
     EmailComposerComponent,
-    GmailComponent
+    GmailComponent,
+    InboxComponent
   ],
   imports: [
     BrowserModule,

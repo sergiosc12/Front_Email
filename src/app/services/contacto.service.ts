@@ -30,7 +30,7 @@ export class ContactoService {
     });
 
     // Realizar la solicitud GET con las cabeceras de autenticación
-    return this.http.get<any[]>(`http://localhost:8081/api/contact/getAll?username=${username}`, { headers });
+    return this.http.get<any[]>(`http://localhost:8080/api/contact/getAll?username=${username}`, { headers });
   }
 
   // Método para actualizar el mensaje
@@ -56,6 +56,6 @@ export class ContactoService {
     const body = { messageId, username, updatedField };
 
     // Realizar la solicitud PUT con las cabeceras de autenticación
-    return this.http.put<any>(`http://localhost:8081/api/message/update`, body, { headers });
+    return this.http.put<any>(`http://localhost:8080/api/message/update`, body, { headers });
   }
 }
