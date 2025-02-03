@@ -1,0 +1,27 @@
+.app-container {
+  display: flex;
+
+}
+
+.main-content {
+  flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
+  padding: 100px; /* Espaciado interno */
+  
+}
+
+.email-list {
+  border: 1px solid #ccc; /* Borde para la lista de correos */
+  padding: 10px; /* Espaciado interno */
+  max-height: 400px; /* Altura máxima para la lista de correos */
+  overflow-y: auto; /* Agrega desplazamiento si hay muchos correos */
+}
+
+.email-item {
+  cursor: pointer; /* Cambia el cursor al pasar sobre un correo */
+  padding: 5px; /* Espaciado interno para cada correo */
+  border-bottom: 1px solid #eee; /* Línea separadora entre correos */
+}
+
+.email-item:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+}

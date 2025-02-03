@@ -1,0 +1,11 @@
+<!-- email-list.component.html -->
+  <div class="email-container">
+    <div class="email-list">
+      <div *ngFor="let email of emails" class="email-item" (click)="selectEmail(email)">
+        <div>{{ email.sender }}</div>
+        <div>{{ email.subject }}</div>
+        <div>{{ email.date | date:'short' }}</div>
+      </div>
+    </div>
+
+  </div>

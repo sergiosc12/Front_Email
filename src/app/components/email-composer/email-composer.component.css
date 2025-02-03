@@ -1,0 +1,115 @@
+.email-composer {
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los campos de texto (Asunto y Mensaje) */
+.input-field, .textarea-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.input-field label, .textarea-field label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-field input, .textarea-field textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.textarea-field textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+/* Estilo para el botón */
+.button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para el select múltiple */
+.contact-select {
+  width: 100%;
+  height: 150px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.contact-select option {
+  padding: 8px;
+}
+
+/* Estilo para los elementos de la lista de contactos (si decides mantenerlo) */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+ul li:hover {
+  background-color: #f0f0f0;
+}
+.email-composer {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.email-fields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Alinea los campos en fila con espacio entre ellos */
+  gap: 20px; /* Espacio entre los campos */
+}
+
+.email-field {
+  flex: 1; /* Hace que cada campo ocupe el mismo espacio */
+  min-width: 200px; /* Asegura que cada campo tenga un ancho mínimo */
+}
+
+.contact-select {
+  width: 100%; /* Hace que los select ocupen todo el ancho disponible */
+  height: 100px; /* Puedes ajustar la altura si lo prefieres */
+}
+
+.input-field, .textarea-field {
+  margin-top: 15px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0F6CBD;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #074a80;
+}

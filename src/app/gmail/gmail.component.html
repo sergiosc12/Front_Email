@@ -1,0 +1,13 @@
+<!-- gmail.component.html -->
+<app-header [user]="user" [currentDate]="currentDate"></app-header>
+<div class="app-container">
+  <app-sidebar (composeEmail)="onComposeEmail()" (folderSelected)="onFolderSelected($event)"></app-sidebar>
+  <div class="main-content">
+    <ng-container *ngIf="isComposerVisible; else emailListTemplate">
+      <app-email-composer (emailSent)="onEmailSent()"></app-email-composer>
+    </ng-container>
+    <ng-template #emailListTemplate>
+      <app-email-list [emails]="emails" (emailSelected)="onEmailSelected($event)"></app-email-list>
+    </ng-template>
+  </div>
+</div>

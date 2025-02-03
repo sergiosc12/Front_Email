@@ -1,0 +1,15 @@
+<div class="sidebar">
+  <div class="boton">
+    <button (click)="onComposeEmail()">Redactar Correo</button>
+  </div>
+  
+  <div class="folder" (click)="toggleFolderMenu()">
+    CARPETA
+  </div>
+
+  <div *ngIf="isFolderMenuOpen" class="folder-menu">
+    <div class="folder" (click)="selectFolder('Recibidos')">Recibidos</div>
+    <div class="folder" (click)="selectFolder('Enviados')">Enviados</div>
+    <div class="folder" (click)="selectFolder('Borradores')">Borradores</div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="left-section">
+    <h2>Registro</h2>
+    <form [formGroup]="formulario" (ngSubmit)="onRegister()">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre" class="input-field" />
+        <div class="error-message" *ngIf="formulario.get('nombre')?.hasError('required') && formulario.get('nombre')?.touched">
+          Nombre es obligatorio.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" formControlName="apellido" class="input-field"/>
+        <div class="error-message" *ngIf="formulario.get('apellido')?.hasError('required') && formulario.get('apellido')?.touched">
+          Apellido es obligatorio.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" formControlName="correo" class="input-field"/>
+        <div class="error-message" *ngIf="formulario.get('correo')?.hasError('required') && formulario.get('correo')?.touched">
+          <span *ngIf="formulario.get('correo')?.errors?.['required']">Correo es obligatorio.</span>
+          <span *ngIf="formulario.get('correo')?.errors?.['email']">Correo no es válido.</span>
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="celular">Celular:</label>
+        <input type="tel" id="celular" formControlName="celular" class="input-field"/>
+        <div class="error-message" *ngIf="formulario.get('celular')?.hasError('required') && formulario.get('celular')?.touched">
+          Celular es obligatorio.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" class="input-field"/>
+        <div class="error-message" *ngIf="formulario.get('fechaNacimiento')?.hasError('required') && formulario.get('fechaNacimiento')?.touched">
+          Fecha de nacimiento es obligatoria.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" formControlName="password" class="input-field"/>
+        <div class="error-message" *ngIf="formulario.get('password')?.hasError('required') && formulario.get('password')?.touched">
+          Contraseña es obligatoria.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="password2">Confirmar Contraseña:</label>
+        <input type="password" id="password2" formControlName="password2" class="input-field"/>
+        <div class="error-message" *ngIf="formulario.get('password2')?.hasError('required') && formulario.get('password2')?.touched">
+          Debes confirmar la contraseña.
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label for="pais">País:</label>
+        <select id="pais" formControlName="pais" class="input-field">
+          <option value="">Selecciona un país</option>
+          <option value="063">Argentina</option>
+          <option value="097">Bolivia</option>
+          <option value="105">Brasil</option>
+          <option value="149">Canadá</option>
+          <option value="169">Colombia</option>
+          <option value="245">España</option>
+          <option value="249">Estados Unidos</option>
+          <option value="275">Francia</option>
+        </select>
+        <div class="error-message" *ngIf="formulario.get('pais')?.hasError('required') && formulario.get('pais')?.touched">
+          Selecciona un país.
+        </div>
+      </div>
+    
+      <button type="submit" class="btn">Registrarse</button>
+    </form>
+    
+    <p class="register-message">
+      <a routerLink="/login">¿Ya tienes una cuenta? Inicia sesión</a>
+    </p>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  </div>
+
+  <div class="right-section">
+    <img src="/assets/Images/Login.jpg" class="login-image" />
+  </div>
+</div>
+
+<!-- Modal de éxito -->
+<div *ngIf="showSuccessModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>¡Registro exitoso!</h3>
+    <p>Ahora puedes iniciar sesión.</p>
+    <button (click)="onCloseModal()">Aceptar</button>
+  </div>
+</div>

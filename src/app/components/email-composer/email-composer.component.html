@@ -1,0 +1,52 @@
+<div class="email-composer">
+  <h2>Redactar Correo</h2>
+
+  <!-- Campos de destinatarios, CC y CCO en fila -->
+  <div class="email-fields">
+    <!-- Campo de destinatarios -->
+    <div class="email-field">
+      <h3>Destinatarios:</h3>
+      <select class="contact-select" multiple (change)="toggleSelection($event, 'recipients')">
+        <option *ngFor="let contact of contacts" [ngValue]="contact.correoContacto">
+          {{ contact.nombreContacto }} ({{ contact.correoContacto }})
+        </option>
+      </select>
+    </div>
+
+    <!-- Campo de CC -->
+    <div class="email-field">
+      <h3>CC:</h3>
+      <select class="contact-select" multiple (change)="toggleSelection($event, 'cc')">
+        <option *ngFor="let contact of contacts" [ngValue]="contact.correoContacto">
+          {{ contact.nombreContacto }} ({{ contact.correoContacto }})
+        </option>
+      </select>
+    </div>
+
+    <!-- Campo de CCO -->
+    <div class="email-field">
+      <h3>CCO:</h3>
+      <select class="contact-select" multiple (change)="toggleSelection($event, 'bcc')">
+        <option *ngFor="let contact of contacts" [ngValue]="contact.correoContacto">
+          {{ contact.nombreContacto }} ({{ contact.correoContacto }})
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Asunto -->
+  <div class="input-field">
+    <label for="subject">Asunto:</label>
+    <input type="text" id="subject" [(ngModel)]="subject" placeholder="Agregar un asunto" />
+  </div>
+
+  <!-- Mensaje -->
+  <div class="textarea-field">
+    <label for="message">Mensaje:</label>
+    <textarea id="message" [(ngModel)]="message" placeholder=""></textarea>
+  </div>
+
+  <!-- Botones -->
+
+  <button (click)="sendEmail()">Enviar</button>
+</div>

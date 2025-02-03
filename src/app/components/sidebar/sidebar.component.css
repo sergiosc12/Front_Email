@@ -1,0 +1,47 @@
+.sidebar {
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 20px;
+  height: 87vh;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 16px;
+}
+
+.folder {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.folder:hover {
+  background-color: #bfc1c4;
+  font-weight: bold;
+}
+
+.boton button {
+  width: 70%;
+  color: #fff;
+  background-color: #0F6CBD;
+  border: 2px solid #0F6CBD;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.boton button:hover {
+  background-color: #074a80;
+  border-color: #074a80;
+}
+
+/* Estilos para el menú desplegable */
+.folder-menu {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
