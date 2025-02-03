@@ -3,7 +3,6 @@
 
   <!-- Campos de destinatarios, CC y CCO en fila -->
   <div class="email-fields">
-    <!-- Campo de destinatarios -->
     <div class="email-field">
       <h3>Destinatarios:</h3>
       <select class="contact-select" multiple (change)="toggleSelection($event, 'recipients')">
@@ -13,7 +12,6 @@
       </select>
     </div>
 
-    <!-- Campo de CC -->
     <div class="email-field">
       <h3>CC:</h3>
       <select class="contact-select" multiple (change)="toggleSelection($event, 'cc')">
@@ -23,7 +21,6 @@
       </select>
     </div>
 
-    <!-- Campo de CCO -->
     <div class="email-field">
       <h3>CCO:</h3>
       <select class="contact-select" multiple (change)="toggleSelection($event, 'bcc')">
@@ -33,20 +30,53 @@
       </select>
     </div>
   </div>
+<!-- Asunto -->
+<div class="input-field">
+  <label for="subject">Asunto:</label>
+  <input type="text" id="subject" [(ngModel)]="subject" (ngModelChange)="onSubjectChange()"  placeholder="Agregar un asunto" (input)="onSubjectChange()" />
+</div>
 
-  <!-- Asunto -->
-  <div class="input-field">
-    <label for="subject">Asunto:</label>
-    <input type="text" id="subject" [(ngModel)]="subject" placeholder="Agregar un asunto" />
+<!-- Mensaje -->
+<div class="textarea-field">
+  <label for="message">Mensaje:</label>
+  <textarea id="message" [(ngModel)]="message" (ngModelChange)="onSubjectChange()"  placeholder="Agrega un mensaje" (input)="onMessageChange()"></textarea>
+</div>
+
+
+  <!-- Botón de adjuntar archivos -->
+  <div class="attach-button-container">
+    <button class="attach-button" (click)="openFileModal()" title="Adjuntar Archivos">
+      <span class="clip-icon">📎</span>
+      <span class="attach-text">Adjuntar Archivos</span>
+    </button>
   </div>
 
-  <!-- Mensaje -->
-  <div class="textarea-field">
-    <label for="message">Mensaje:</label>
-    <textarea id="message" [(ngModel)]="message" placeholder=""></textarea>
+  <!-- Modal de selección de archivo -->
+  <div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <h3>Seleccionar archivo</h3>
+      <select [(ngModel)]="selectedFileId">
+        <option *ngFor="let file of allowedFiles" [value]="file.attachmentId">
+          {{ file.attachmentName }}
+        </option>
+      </select>
+      <input [(ngModel)]="attachmentName" placeholder="Nombre del archivo" />
+      <button (click)="addAttachment()">Agregar</button>
+      <button (click)="closeFileModal()">Cerrar</button>
+    </div>
   </div>
+ <!-- Lista de archivos adjuntos -->
+<div class="attached-files">
+  <h3>Archivos adjuntos:</h3>
+  <div class="attachments-list">
+    <div *ngFor="let attachment of attachments; let i = index" class="attachment-item">
+      <span class="attachment-name">{{ attachment.attachmentName }}</span>
+      <button class="remove-attachment" (click)="removeAttachment(i)">❌</button>
+    </div>
+  </div>
+</div>
 
-  <!-- Botones -->
 
-  <button (click)="sendEmail()">Enviar</button>
+<button [disabled]="showWarning" (click)="sendEmail()">Enviar</button>
+
 </div>

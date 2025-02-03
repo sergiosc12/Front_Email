@@ -2,27 +2,36 @@
   padding: 40px;
   background-color: #ffffff;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
 }
 
-/* Estilos para los campos de texto (Asunto y Mensaje) */
 .input-field, .textarea-field {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .input-field label, .textarea-field label {
   margin-bottom: 5px;
   font-weight: bold;
+  font-size: 14px;
+  color: #333;
 }
 
 .input-field input, .textarea-field textarea {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  transition: border 0.3s ease;
+}
+
+.input-field input:focus, .textarea-field textarea:focus {
+  border-color: #0F6CBD;
+  outline: none;
 }
 
 .textarea-field textarea {
@@ -30,86 +39,144 @@
   resize: vertical;
 }
 
-/* Estilo para el botón */
-.button {
+.contact-select {
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border 0.3s ease;
+}
+
+.contact-select:focus {
+  border-color: #0F6CBD;
+  outline: none;
+}
+
+/* Estilo para los botones */
+.button, button {
   background-color: #007BFF;
   color: white;
   padding: 10px 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-.button:hover {
+.button:hover, button:hover {
   background-color: #0056b3;
 }
 
-/* Estilo para el select múltiple */
-.contact-select {
-  width: 100%;
-  height: 150px;
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+button:disabled {
+  background-color: #dcdcdc;
+  cursor: not-allowed;
 }
 
-.contact-select option {
-  padding: 8px;
+button:disabled:hover {
+  background-color: #dcdcdc;
 }
 
-/* Estilo para los elementos de la lista de contactos (si decides mantenerlo) */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  padding: 8px;
-  cursor: pointer;
-}
-
-ul li:hover {
-  background-color: #f0f0f0;
-}
-.email-composer {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+.email-composer h2 {
+  font-size: 24px;
+  color: #0F6CBD;
+  margin-bottom: 20px;
 }
 
 .email-fields {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between; /* Alinea los campos en fila con espacio entre ellos */
-  gap: 20px; /* Espacio entre los campos */
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .email-field {
-  flex: 1; /* Hace que cada campo ocupe el mismo espacio */
-  min-width: 200px; /* Asegura que cada campo tenga un ancho mínimo */
+  flex: 1;
+  min-width: 200px;
 }
 
-.contact-select {
-  width: 100%; /* Hace que los select ocupen todo el ancho disponible */
-  height: 100px; /* Puedes ajustar la altura si lo prefieres */
+textarea:focus, input:focus, button:focus {
+  border-color: #0F6CBD;
+  outline: none;
 }
 
-.input-field, .textarea-field {
-  margin-top: 15px;
+.attachment-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: green;
+  font-weight: bold;
 }
 
-button {
+/* Estilo para los archivos adjuntos */
+.attached-files {
   margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #0F6CBD;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-right: 10px;
 }
 
-button:hover {
-  background-color: #074a80;
+.attachments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.attachment-name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.remove-attachment {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.remove-attachment:hover {
+  color: darkred;
+}
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.chip {
+  background-color: #007bff;
+  color: white;
+  padding: 8px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-chip {
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.suggestion-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: white;
+}
+
+.suggestion-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion-list li:hover {
+  background-color: #f0f0f0;
 }
