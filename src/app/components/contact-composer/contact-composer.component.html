@@ -1,0 +1,9 @@
+
+<button (click)="toggleForm()">Crear Contacto</button>
+<div *ngIf="showForm">
+  <select [(ngModel)]="selectedUser">
+    <option *ngFor="let user of users" [value]="user.contactUserId">{{ user.contactUserId }}</option>
+  </select>
+  <button (click)="addContact()">Añadir</button>
+</div>
+*/

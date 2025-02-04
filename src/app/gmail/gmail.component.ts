@@ -49,4 +49,8 @@ export class GmailComponent  implements OnInit {
     // Aquí puedes manejar la lógica para mostrar el correo seleccionado
     console.log('Correo seleccionado:', email);
   }
+
+  onContactSelected(contact:any ){
+    
+  }
 }

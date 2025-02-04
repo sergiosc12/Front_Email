@@ -12,10 +12,14 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { EmailListComponent } from './components/email-list/email-list.component';
 import { EmailComposerComponent } from './components/email-composer/email-composer.component';
 import { GmailComponent } from './gmail/gmail.component';
+import { ContactComposerComponent } from './components/contact-composer/contact-composer.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ContactComposerComponent,
     RegisterComponent,
     HeaderComponent,
     SidebarComponent,
