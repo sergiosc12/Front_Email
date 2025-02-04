@@ -1,13 +1,24 @@
-<!-- gmail.component.html -->
 <app-header [user]="user" [currentDate]="currentDate"></app-header>
 <div class="app-container">
-  <app-sidebar (composeEmail)="onComposeEmail()" (folderSelected)="onFolderSelected($event)"></app-sidebar>
+  <app-sidebar 
+    (composeEmail)="onComposeEmail()" 
+    (folderSelected)="onFolderSelected($event)" 
+    (createContact)="onCreateContact()">
+  </app-sidebar>
+
   <div class="main-content">
-    <ng-container *ngIf="isComposerVisible; else emailListTemplate">
-      <app-email-composer (emailSent)="onEmailSent()"></app-email-composer>
+    <!-- Mostrar el formulario de contacto si isContactComposerVisible es true -->
+    <ng-container *ngIf="isContactComposerVisible; else emailView">
+      <app-contact-composer></app-contact-composer>
     </ng-container>
-    <ng-template #emailListTemplate>
-      <app-email-list [emails]="emails" (emailSelected)="onEmailSelected($event)"></app-email-list>
+
+    <ng-template #emailView>
+      <ng-container *ngIf="isComposerVisible; else emailListTemplate">
+        <app-email-composer (emailSent)="onEmailSent()"></app-email-composer>
+      </ng-container>
+      <ng-template #emailListTemplate>
+        <app-email-list [emails]="emails" (emailSelected)="onEmailSelected($event)"></app-email-list>
+      </ng-template>
     </ng-template>
   </div>
 </div>

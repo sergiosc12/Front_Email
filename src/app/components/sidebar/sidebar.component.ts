@@ -12,9 +12,9 @@ export class SidebarComponent {
   @Output() createContact = new EventEmitter<void>(); 
 
   isFolderMenuOpen = false;
-
+  isContactComposerVisible = false;
   constructor(private createEmailService: CreateEmailService) { }  // Cambiar MessageService por CreateEmailService
-
+  
   onComposeEmail() {
     this.createEmailService.createEmail().subscribe({
       next: (response: any) => {
@@ -28,12 +28,21 @@ export class SidebarComponent {
       }
     });
   }
-  
+  onCreateContact() {
+    this.isContactComposerVisible = true;
+    console.log("📩 Botón Crear Contactos clickeado");
+    this.createContact.emit();  // Emitimos el evento
+  }
   toggleFolderMenu() {
     this.isFolderMenuOpen = !this.isFolderMenuOpen;
   }
 
   selectFolder(folder: string) {
-    this.folderSelected.emit(folder);
+    if (folder === 'crearContactos') {
+      console.log("Evento createContact emitido");
+      this.createContact.emit();  // Emitimos el evento
+    } else {
+      this.folderSelected.emit(folder);
+    }
   }
 }

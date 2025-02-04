@@ -11,7 +11,7 @@ export class GmailComponent  implements OnInit {
   emails: any[] = [];
   isComposerVisible = false; // Inicializa como false
   user: string = '';
-
+  isContactComposerVisible = false;
   ngOnInit() {
     const storedUser = localStorage.getItem('username');
     console.log('Usuario recuperado del localStorage:', storedUser); // Verifica lo que se obtiene
@@ -22,9 +22,15 @@ export class GmailComponent  implements OnInit {
   constructor(private emailService: EmailService) {}
 
   onFolderSelected(folder: string) {
-    this.getEmails(folder); // Obtiene los correos de la carpeta seleccionada
-    this.isComposerVisible = false; // Asegúrate de ocultar el compositor
+    if (folder === 'crearContactos') {
+      this.isContactComposerVisible = true;  // Muestra el formulario de contactos
+      this.isComposerVisible = false;  // Oculta el redactor de correos si está abierto
+    } else {
+      this.isContactComposerVisible = false;
+      // Aquí puedes manejar otros cambios de vista
+    }
   }
+  
 
   getEmails(folder: string) {
     this.emailService.getEmails(folder).subscribe(data => {
@@ -34,6 +40,12 @@ export class GmailComponent  implements OnInit {
 
   showComposer() {
     this.isComposerVisible = true; // Muestra el compositor
+  }
+
+  onCreateContact() {
+    console.log("✅ Evento createContact recibido en GmailComponent");
+    this.isContactComposerVisible = true;
+    this.isComposerVisible = false;
   }
 
   onComposeEmail() {
