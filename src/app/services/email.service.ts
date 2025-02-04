@@ -9,6 +9,24 @@ export class EmailService {
 
   constructor(private http: HttpClient) {}
   
+  private getAuthHeaders(): HttpHeaders {
+    const username = localStorage.getItem('username');
+    const password = localStorage.getItem('password');
+    if (!username || !password) {
+      throw new Error('No se encontraron credenciales en el localStorage');
+    }
+    const credentials = btoa(`${username}:${password}`);
+    return new HttpHeaders({
+      'Authorization': `Basic ${credentials}`,
+      'Content-Type': 'application/json'
+    });
+  }
+
+  forwardMessage(requestBody: any): Observable<Map<any, any>> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Map<any, any>>(`${this.apiUrl}/forward`, requestBody, { headers });
+  }
+
   getEmails(idType: string, username: string): Observable<Map<any, any>> {
     const url = `${this.apiUrl}/inbox?idType=${idType}&username=${username}`;
   

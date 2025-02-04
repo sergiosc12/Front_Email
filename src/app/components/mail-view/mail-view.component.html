@@ -1,5 +1,4 @@
 <div class="mail-view-container">
-  
     <div class="mail-details">
       <div *ngIf="type === 'Remitente'">
         <strong>Remitente:</strong> {{ recipients[0] }}
@@ -10,12 +9,12 @@
       <div><strong>Asunto:</strong> {{ mail.asunto }}</div>
       <div><strong>Fecha:</strong> {{ mail.fechaAccion }} {{ mail.horaAccion }}</div>
     </div>
-  
+
     <div class="mail-message">
       <h3>Mensaje:</h3>
       <p>{{ mail.cuerpoMensaje }}</p>
     </div>
-  
+
     <!-- Lista de archivos adjuntos -->
     <div *ngIf="mail.archivos?.length > 0" class="attached-files">
       <h3>Archivos adjuntos:</h3>
@@ -27,73 +26,99 @@
         </div>
       </div>
     </div>
-  
-    <button (click)="onClose()" class="close-button">Cerrar</button>
-  </div>
-  
-  <style>
-    .mail-view-container {
-      padding: 40px;
-      background-color: #ffffff;
-      border-radius: 5px;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-      font-family: 'Arial', sans-serif;
-    }
-  
-    .mail-details div {
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #333;
-    }
-  
-    .mail-message h3 {
-      font-size: 18px;
-      color: #0F6CBD;
-    }
-  
-    .mail-message p {
-      font-size: 14px;
-      color: #555;
-    }
-  
-    .attached-files h3 {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #0F6CBD;
-    }
-  
-    .attachments-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-  
-    .attachment-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-  
-    .attachment-name {
-      font-size: 14px;
-      font-weight: bold;
-      color: #007BFF;
-      cursor: pointer;
-    }
-  
-    .close-button {
-      background-color: #007BFF;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-      margin-top: 20px;
-    }
-  
-    .close-button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+
+    <!-- Buttons -->
+    <div class="button-container">
+      <button (click)="onClose()" class="close-button">Cerrar</button>
+      <button (click)="toggleForwarding()" class="forward-button">Reenviar</button>
+    </div>
+
+    <!-- Forwarding Section -->
+    <div *ngIf="isForwarding" class="forward-container">
+      <h3>Reenviar Mensaje</h3>
+
+      <div class="email-field">
+        <h3>Destinatarios:</h3>
+        <select class="contact-select" multiple (change)="toggleSelection($event)">
+          <option *ngFor="let contact of contacts" [ngValue]="contact.correoContacto">
+            {{ contact.nombreContacto }} ({{ contact.correoContacto }})
+          </option>
+        </select>
+      </div>
+
+      <button class="send-button" (click)="sendForwardedMessage()">Enviar</button>
+    </div>
+
+    <!-- Success Modal -->
+    <div *ngIf="showSuccessModal" class="modal">
+      <div class="modal-content">
+        <p>Mensaje reenviado correctamente</p>
+        <button class="close-button" (click)="closeModal()">Cerrar</button>
+      </div>
+    </div>
+</div>
+
+<style>
+  .mail-view-container {
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .close-button, .forward-button, .send-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .close-button:hover, .forward-button:hover, .send-button:hover {
+    background-color: #0056b3;
+  }
+
+  .forward-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-select {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .modal-content p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+</style>
