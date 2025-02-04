@@ -43,6 +43,7 @@ export class CreateEmailService {
             asunto: 'Borrador',
             cuerpoMensaje: 'Borrador',
             tipoCarpeta: 'Bor',
+            idCategoria: "PRI",
             usuario: storedUsername,
             idPais: paisId || 249
           };

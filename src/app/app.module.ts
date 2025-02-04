@@ -14,10 +14,13 @@ import { EmailComposerComponent } from './components/email-composer/email-compos
 import { GmailComponent } from './gmail/gmail.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { MailViewComponent } from './components/mail-view/mail-view.component';
+import { ContactComposerComponent } from './components/contact-composer/contact-composer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ContactComposerComponent,
     RegisterComponent,
     HeaderComponent,
     SidebarComponent,

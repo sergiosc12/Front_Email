@@ -4,11 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Login/login.component';
 import { RegisterComponent } from './Register/register.component';
 import { GmailComponent } from './gmail/gmail.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegisterComponent },
   { path: 'gmail', component: GmailComponent },
+  { path: 'contacto', component: GmailComponent },
 ];
 
 @NgModule({

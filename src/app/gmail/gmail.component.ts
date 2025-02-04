@@ -105,4 +105,8 @@ export class GmailComponent  implements OnInit {
   }
   
   
+
+  onContactSelected(contact:any ){
+    
+  }
 }

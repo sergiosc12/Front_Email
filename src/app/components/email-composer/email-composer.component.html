@@ -30,18 +30,32 @@
       </select>
     </div>
   </div>
-<!-- Asunto -->
-<div class="input-field">
-  <label for="subject">Asunto:</label>
-  <input type="text" id="subject" [(ngModel)]="subject" (ngModelChange)="onSubjectChange()"  placeholder="Agregar un asunto" (input)="onSubjectChange()" />
-</div>
+  
+    <!-- Combo de Categorías -->
+    <div class="input-field">
+      <label for="category">Categoría:</label>
+      <select id="category" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <option value="PRI">Principal</option>
+        <option value="PRO">Promoción</option>
+        <option value="SOC">Social</option>
+        <option value="NOT">Notificación</option>
+        <option value="INP">Importante</option>
+        <option value="SPA">SPAM</option>
+        <option value="PAP">Papelera</option>
+      </select>
+    </div>
 
-<!-- Mensaje -->
-<div class="textarea-field">
-  <label for="message">Mensaje:</label>
-  <textarea id="message" [(ngModel)]="message" (ngModelChange)="onSubjectChange()"  placeholder="Agrega un mensaje" (input)="onMessageChange()"></textarea>
-</div>
+  <!-- Asunto -->
+  <div class="input-field">
+    <label for="subject">Asunto:</label>
+    <textarea id="subject" [(ngModel)]="subject" placeholder="Agregar un asunto" (input)="onSubjectChange()"></textarea>
+  </div>
 
+  <!-- Mensaje -->
+  <div class="textarea-field">
+    <label for="message">Mensaje:</label>
+    <textarea id="message" [(ngModel)]="message" placeholder="Agrega un mensaje" (input)="onMessageChange()"></textarea>
+  </div>
 
   <!-- Botón de adjuntar archivos -->
   <div class="attach-button-container">
@@ -65,18 +79,17 @@
       <button (click)="closeFileModal()">Cerrar</button>
     </div>
   </div>
- <!-- Lista de archivos adjuntos -->
-<div class="attached-files">
-  <h3>Archivos adjuntos:</h3>
-  <div class="attachments-list">
-    <div *ngFor="let attachment of attachments; let i = index" class="attachment-item">
-      <span class="attachment-name">{{ attachment.attachmentName }}</span>
-      <button class="remove-attachment" (click)="removeAttachment(i)">❌</button>
+
+  <!-- Lista de archivos adjuntos -->
+  <div class="attached-files">
+    <h3>Archivos adjuntos:</h3>
+    <div class="attachments-list">
+      <div *ngFor="let attachment of attachments; let i = index" class="attachment-item">
+        <span class="attachment-name">{{ attachment.attachmentName }}</span>
+        <button class="remove-attachment" (click)="removeAttachment(i)">❌</button>
+      </div>
     </div>
   </div>
-</div>
 
-
-<button [disabled]="showWarning" (click)="sendEmail()">Enviar</button>
-
+  <button [disabled]="showWarning" (click)="sendEmail()">Enviar</button>
 </div>

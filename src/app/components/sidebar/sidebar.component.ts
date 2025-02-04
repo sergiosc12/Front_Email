@@ -9,6 +9,8 @@ import { CreateEmailService } from '../../services/create_email.service';  // As
 export class SidebarComponent {
   @Output() composeEmail = new EventEmitter<void>();
   @Output() folderSelected = new EventEmitter<string>();
+  @Output() createContact = new EventEmitter<void>(); 
+
   isFolderMenuOpen = false;
 
   constructor(private createEmailService: CreateEmailService) { }  // Cambiar MessageService por CreateEmailService
@@ -26,7 +28,7 @@ export class SidebarComponent {
       }
     });
   }
-
+  
   toggleFolderMenu() {
     this.isFolderMenuOpen = !this.isFolderMenuOpen;
   }
