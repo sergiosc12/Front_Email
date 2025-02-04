@@ -1,0 +1,99 @@
+<div class="mail-view-container">
+  
+    <div class="mail-details">
+      <div *ngIf="type === 'Remitente'">
+        <strong>Remitente:</strong> {{ recipients[0] }}
+      </div>
+      <div *ngIf="type === 'Destinatario'">
+        <strong>Destinatarios:</strong> {{ recipients.join(', ') }}
+      </div>
+      <div><strong>Asunto:</strong> {{ mail.asunto }}</div>
+      <div><strong>Fecha:</strong> {{ mail.fechaAccion }} {{ mail.horaAccion }}</div>
+    </div>
+  
+    <div class="mail-message">
+      <h3>Mensaje:</h3>
+      <p>{{ mail.cuerpoMensaje }}</p>
+    </div>
+  
+    <!-- Lista de archivos adjuntos -->
+    <div *ngIf="mail.archivos?.length > 0" class="attached-files">
+      <h3>Archivos adjuntos:</h3>
+      <div class="attachments-list">
+        <div *ngFor="let archivo of mail.archivos" class="attachment-item">
+          <a href="#" (click)="downloadFile(archivo)" class="attachment-name">
+            📎 {{ archivo.nomArchivo }}
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <button (click)="onClose()" class="close-button">Cerrar</button>
+  </div>
+  
+  <style>
+    .mail-view-container {
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      font-family: 'Arial', sans-serif;
+    }
+  
+    .mail-details div {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+  
+    .mail-message h3 {
+      font-size: 18px;
+      color: #0F6CBD;
+    }
+  
+    .mail-message p {
+      font-size: 14px;
+      color: #555;
+    }
+  
+    .attached-files h3 {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #0F6CBD;
+    }
+  
+    .attachments-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .attachment-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  
+    .attachment-name {
+      font-size: 14px;
+      font-weight: bold;
+      color: #007BFF;
+      cursor: pointer;
+    }
+  
+    .close-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+  
+    .close-button:hover {
+      background-color: #0056b3;
+    }
+  </style>

@@ -13,6 +13,7 @@ import { EmailListComponent } from './components/email-list/email-list.component
 import { EmailComposerComponent } from './components/email-composer/email-composer.component';
 import { GmailComponent } from './gmail/gmail.component';
 import { InboxComponent } from './components/inbox/inbox.component';
+import { MailViewComponent } from './components/mail-view/mail-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { InboxComponent } from './components/inbox/inbox.component';
     EmailListComponent,
     EmailComposerComponent,
     GmailComponent,
-    InboxComponent
+    InboxComponent,
+    MailViewComponent
   ],
   imports: [
     BrowserModule,

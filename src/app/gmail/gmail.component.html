@@ -4,12 +4,27 @@
   <app-sidebar (composeEmail)="onComposeEmail()" (folderSelected)="onFolderSelected($event)"></app-sidebar>
 
   <div class="main-content">
-    <ng-container *ngIf="isComposerVisible; else emailListTemplate">
+    <ng-container *ngIf="isComposerVisible; else contentTemplate">
       <app-email-composer (emailSent)="onEmailSent()"></app-email-composer>
     </ng-container>
 
-    <ng-template #emailListTemplate>
-      <app-inbox [emails]="emails" (emailSelected)="onEmailSelected($event)"></app-inbox>
+    <ng-template #contentTemplate>
+      <ng-container *ngIf="selectedMail; else emailListTemplate">
+        <app-mail-view 
+          [mail]="selectedMail" 
+          [recipients]="selectedRecipients" 
+          [type]="getSenderLabel()" 
+          (closeView)="selectedMail = null">
+        </app-mail-view>
+      </ng-container>
+
+      <ng-template #emailListTemplate>
+        <app-inbox [emails]="emails" 
+             [type]="getSenderLabel()" 
+             (emailSelected)="onEmailSelected($event)">
+        </app-inbox>
+      </ng-template>
     </ng-template>
+
   </div>
-</div>
+</div> 

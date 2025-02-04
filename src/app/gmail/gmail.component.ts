@@ -11,6 +11,10 @@ export class GmailComponent  implements OnInit {
   emails: any[] = [];
   isComposerVisible = false; // Inicializa como false
   user: string = '';
+  type: string = 'Rec';
+  selectedMail: any = null;
+  selectedRecipients: string[] = [];
+
 
   ngOnInit() {
     const storedUser = localStorage.getItem('username');
@@ -27,20 +31,28 @@ export class GmailComponent  implements OnInit {
   }
 
   getEmails(folder: string) {
+    this.type = folder
     this.emailService.getEmails(folder, this.user).subscribe(data => {
       // Map the email object and keep fechaAccion and horaAccion for formatting in InboxComponent
       this.emails = Object.entries(data).map(([sender, email]) => ({
         sender,
-        asunto: email.asunto, // Use 'asunto' for subject
-        fechaAccion: email.fechaAccion, // Keep original properties for date formatting
-        horaAccion: email.horaAccion, // Keep original properties for time
+        subject: email.asunto, // Use 'asunto' for subject
+        date:  email.fechaAccion.split("T")[0] + " " + email.horaAccion, // Keep original properties for time
+        id : email.mensajePK.idMensaje
       }));
-      
       console.log(this.emails);
-    });
+    }); 
   }
-  
-
+  getSenderLabel(): string {
+    if (this.type === 'Rec') {
+      return 'Remitente';
+    } else if (this.type === 'Env') {
+      return 'Destinatario';
+    } else if (this.type === 'Bor') {
+      return 'ID Mensaje';  
+    }
+    return 'Sender'; // Default fallback label
+  }
 
   showComposer() {
     this.isComposerVisible = true; // Muestra el compositor
@@ -55,8 +67,42 @@ export class GmailComponent  implements OnInit {
     this.getEmails('Recibidos'); // Actualiza la lista de correos
   }
 
-  onEmailSelected(email: any) {
-    // Aquí puedes manejar la lógica para mostrar el correo seleccionado
-    console.log('Correo seleccionado:', email);
+  onEmailSelected(mail: any) {
+    this.emailService.getMessage(mail.id, this.user, this.type).subscribe(
+      (fullMail) => {
+        // Extract key-value pairs from the map
+        const entries = Object.entries(fullMail);
+        
+        if (entries.length === 0) {
+          console.error("Empty response received.");
+          return;
+        }
+  
+        const [key, message] = entries[0]; // Extract the first (and only) key-value pair
+  
+        // Assign message object
+        this.selectedMail = message;
+  
+        // Determine recipients based on the folder type
+        if (this.type === 'Rec') {
+          // 'Rec' folder: The key is the sender's email, so recipients are empty
+          this.selectedRecipients = [key];
+        } else if (this.type === 'Env') {
+          // 'Env' folder: The key is an array of recipients
+          this.selectedRecipients = Array.isArray(key) ? key : [key];
+        } else if (this.type === 'Bor') {
+          // 'Bor' folder: The key is just the messageId, no special recipient handling
+          this.selectedRecipients = [];
+        }
+  
+        console.log("Final selectedMail:", this.selectedMail);
+        console.log("Final selectedRecipients:", this.selectedRecipients);
+      },
+      (error) => {
+        console.error('Error fetching email:', error);
+      }
+    );
   }
+  
+  
 }

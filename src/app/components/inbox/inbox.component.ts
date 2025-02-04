@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class InboxComponent {
   @Input() emails: any[] = [];
+  @Input() type: string = '';
   @Output() emailSelected = new EventEmitter<any>();
 
   // Format date with checks for missing or invalid values
@@ -26,4 +27,5 @@ export class InboxComponent {
   selectEmail(email: any) {
     this.emailSelected.emit(email);
   }
+  
 }

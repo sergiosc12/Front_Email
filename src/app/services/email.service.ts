@@ -24,6 +24,22 @@ export class EmailService {
   
     return this.http.get<Map<any, any>>(url, { headers });
   }
+  getMessage(messageId: string, username: string, idType: string): Observable<any> {
+    const url = `${this.apiUrl}/get?messageId=${messageId}&username=${username}&idType=${idType}`;
+  
+    // Retrieve credentials from localStorage
+    const authUsername = localStorage.getItem("username");
+    const authPassword = localStorage.getItem("password");
+  
+    // Encode credentials in Base64 for Basic Auth
+    const authHeader = `Basic ${btoa(`${authUsername}:${authPassword}`)}`;
+  
+    const headers = new HttpHeaders({
+      "Authorization": authHeader
+    });
+  
+    return this.http.get<any>(url, { headers });
+  }
   
   
 
